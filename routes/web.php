@@ -14,7 +14,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('dashboard');
 });
 Route::get('register', 'Authen\AuthenController@getRegister');
 Route::post('register', 'Authen\AuthenController@register');
@@ -25,5 +25,9 @@ Route::post('sign-in', 'Authen\AuthenController@signIn');
 Route::get('sign-out', 'Authen\UserController@signOut');
 
 Route::group(['middleware' => 'user'], function () {
-    Route::get('/dashboard', 'Dashboard\DashboardController@dashboard');
+    Route::get('dashboard', 'Dashboard\DashboardController@dashboard');
+    Route::get('order', 'Order\OrderController@index');
+    Route::get('stock', 'Stock\StockController@index');
+    Route::get('product', 'Product\ProductController@index');
+    Route::get('customer', 'Customer\CustomerController@index');
 });
