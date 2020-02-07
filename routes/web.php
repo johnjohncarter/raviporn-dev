@@ -11,6 +11,11 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/sign-in', 'Authen\AuthenController@signIn');
+Route::get('/register', 'Authen\AuthenController@registers');
+Route::get('/dashboard', 'Dashboard\DashboardController@dashboard');
