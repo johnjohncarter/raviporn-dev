@@ -16,6 +16,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/sign-in', 'Authen\AuthenController@signIn');
-Route::get('/register', 'Authen\AuthenController@registers');
-Route::get('/dashboard', 'Dashboard\DashboardController@dashboard');
+Route::get('register', 'Authen\AuthenController@getRegister');
+Route::post('register', 'Authen\AuthenController@register');
+
+Route::get('sign-in', 'Authen\AuthenController@getSignIn');
+Route::post('sign-in', 'Authen\AuthenController@signIn');
+
+Route::get('sign-out', 'Authen\UserController@signOut');
+
+Route::group(['middleware' => 'user'], function () {
+    Route::get('/dashboard', 'Dashboard\DashboardController@dashboard');
+});

@@ -34,16 +34,10 @@
     <title></title>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper">
-    @include('layout.header')
 
-    @include('layout.sidebar')
 
-    @yield('content')
+@yield('content')
 
-    @include('layout.footer')
-
-</div>
 
 <!-- jQuery -->
 <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
