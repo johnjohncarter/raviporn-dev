@@ -35,7 +35,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{ url('order') }}" class="nav-link{{ request()->is('order') ? ' active' : '' }}">
-                        <i class="nav-icon fas fa-th"></i>
+                        <i class="nav-icon fas fa-shopping-cart"></i>
                         <p>
                             Order
                         </p>
@@ -43,7 +43,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{ url('stock') }}" class="nav-link{{ request()->is('stock') ? ' active' : '' }}">
-                        <i class="nav-icon fas fa-th"></i>
+                        <i class="nav-icon fas fa-folder-open"></i>
                         <p>
                             Stock
                         </p>
@@ -60,7 +60,7 @@
 
                 <li class="nav-item">
                     <a href="{{ url('customer') }}" class="nav-link{{ request()->is('customer') ? ' active' : '' }}">
-                        <i class="nav-icon fas fa-th"></i>
+                        <i class="nav-icon far fa-address-card"></i>
                         <p>
                             Customer
                         </p>
