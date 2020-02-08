@@ -16,6 +16,7 @@ class OrdersTableSeeder extends Seeder
         $order = [
             'user_id' => 3,
             'order_date' => now(),
+            'order_time' => now(),
             'total_amount' => 200,
             'total_price' => 3300,
             'description' => 'จัดส่งให้ทันก่อน 17.00 น. นะครับ',
@@ -44,6 +45,7 @@ class OrdersTableSeeder extends Seeder
         $order = [
             'user_id' => 4,
             'order_date' => now(),
+            'order_time' => now(),
             'total_amount' => 150,
             'total_price' => 2550,
             'description' => 'จัดส่งให้ทันก่อน 22.00 น. นะครับและตั้งใว้ข้างๆรถเลยเลยไม่ต้องรอคนมาขน',
