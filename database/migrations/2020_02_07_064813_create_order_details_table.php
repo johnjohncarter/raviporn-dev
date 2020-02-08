@@ -20,7 +20,7 @@ class CreateOrderDetailsTable extends Migration
             $table->integer('user_id');
             $table->integer('amount');
             $table->decimal('price');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
