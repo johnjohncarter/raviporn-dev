@@ -26,7 +26,10 @@ Route::get('sign-out', 'Authen\UserController@signOut');
 
 Route::group(['middleware' => 'user'], function () {
     Route::get('dashboard', 'Dashboard\DashboardController@dashboard');
-    Route::get('order', 'Order\OrderController@index');
+//    Route::get('order', 'Order\OrderController@index');
+    Route::get('new-order', 'Order\OrderController@getNewOrder');
+    Route::get('order-new', 'Order\OrderController@orderNew');
+    Route::get('order-history', 'Order\OrderController@orderHistory');
     Route::get('stock', 'Stock\StockController@index');
     Route::get('product', 'Product\ProductController@index');
     Route::get('customer', 'Customer\CustomerController@index');

@@ -33,13 +33,28 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ url('order') }}" class="nav-link{{ request()->is('order') ? ' active' : '' }}">
+                <li class="nav-item has-treeview{{ request()->is('order*') ? ' menu-open' : '' }}">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-shopping-cart"></i>
                         <p>
-                            Order
+                            Orders
+                            <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
+                    <ul class="nav nav-treeview" style="display: {{ request()->is('order*') ? ' block' : 'none' }};">
+                        <li class="nav-item">
+                            <a href="{{ url('order-new') }}" class="nav-link{{ request()->is('order-new') ? ' active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>order new</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('order-history') }}" class="nav-link{{ request()->is('order-history') ? ' active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>order history</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a href="{{ url('stock') }}" class="nav-link{{ request()->is('stock') ? ' active' : '' }}">

@@ -17,6 +17,7 @@ class CreateOrdersTable extends Migration
             $table->bigIncrements('id');
             $table->integer('user_id');
             $table->dateTime('order_date');
+            $table->dateTime('order_time');
             $table->integer('total_amount');
             $table->decimal('total_price');
             $table->text('description');
