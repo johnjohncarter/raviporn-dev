@@ -27,6 +27,9 @@ Vue.component('new-order-component', require('./components/Order/NewOrderCompone
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+import VueSwal from 'vue-swal'
+
+Vue.use(VueSwal)
 
 const app = new Vue({
     el: '#app',
