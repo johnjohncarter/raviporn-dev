@@ -30,7 +30,7 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper">
+<div class="wrapper" id="app">
 
     @include('layout.header')
 
@@ -102,9 +102,11 @@
 <!-- AdminLTE App -->
 <script src="{{ asset('dist/js/adminlte.js') }}"></script>
 
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="{{ asset('dist/js/demo.js') }}"></script>
+{{--<!-- AdminLTE dashboard demo (This is only for demo purposes) -->--}}
+{{--<script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>--}}
+{{--<!-- AdminLTE for demo purposes -->--}}
+{{--<script src="{{ asset('dist/js/demo.js') }}"></script>--}}
+
+<script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

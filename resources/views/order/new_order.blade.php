@@ -4,6 +4,13 @@
     <!-- Small boxes (Stat box) -->
     <div class="row">
         <div class="col-lg-12">
+            5555555555555555555
+            <example-component></example-component>
+        </div>
+    </div>
+    <!-- Small boxes (Stat box) -->
+    <div class="row">
+        <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Order New Create</h3>
