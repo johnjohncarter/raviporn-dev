@@ -18,7 +18,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Order</h3>
+                    <h3 class="card-title">Order Today</h3>
                     <div class="card-tools">
                         <div class="input-group input-group-sm" style="width: 150px;">
                             <a href="{{ url('new-order') }}" class="brn btn-info" style="padding: 5px; width: 100%; text-align: center; border-radius: 5px">New Order</a>
@@ -49,7 +49,7 @@
                                         <td>{{ $order->total_amount }}</td>
                                         <td>{{ number_format($order->total_price, 2) }}</td>
                                         <td>
-                                            <button class="btn btn-info btn-xs">view</button>
+                                            <a href="{{ url('order-view/'.$order['id']) }}" class="btn btn-info btn-xs">view</a>
                                             <button class="btn btn-primary btn-xs">edit</button>
                                             <button class="btn btn-danger btn-xs">delete</button>
                                         </td>

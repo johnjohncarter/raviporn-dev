@@ -38,4 +38,19 @@ class OrderDetail extends Model
      */
     protected $casts = [
     ];
+
+    public function product() {
+        return $this->belongsTo(Product::class, 'product_id', 'id');
+    }
+
+    public function product_price() {
+        return $this->hasOneThrough(
+            ProductPrice::class,
+            Product::class,
+            'id',
+            'product_id',
+            'product_id',
+            'id'
+        );
+    }
 }
