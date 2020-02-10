@@ -74,10 +74,10 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ url('customer') }}" class="nav-link{{ request()->is('customer') ? ' active' : '' }}">
+                    <a href="{{ url('manage-user') }}" class="nav-link{{ request()->is('manage-user') ? ' active' : '' }}">
                         <i class="nav-icon far fa-address-card"></i>
                         <p>
-                            Customer
+                            Manage User
                         </p>
                     </a>
                 </li>

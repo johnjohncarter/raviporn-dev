@@ -33,5 +33,5 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('order-view/{order_id}', 'Order\OrderController@show');
     Route::get('stock', 'Stock\StockController@index');
     Route::get('product', 'Product\ProductController@index');
-    Route::get('customer', 'Customer\CustomerController@index');
+    Route::get('manage-user', 'Manage\ManageUserController@index');
 });

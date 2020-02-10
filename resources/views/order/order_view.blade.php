@@ -48,11 +48,11 @@
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th>ลำดับ</th>
-                                        <th>ชื่อสินค้า</th>
-                                        <th>จำนวน</th>
-                                        <th>ราคา</th>
-                                        <th>รวมเป็นเงิน(บาท)</th>
+                                        <th class="text-center">ลำดับ</th>
+                                        <th class="text-center">ชื่อสินค้า</th>
+                                        <th class="text-center">ราคา</th>
+                                        <th class="text-center">จำนวน</th>
+                                        <th class="text-center">รวมเป็นเงิน(บาท)</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -61,8 +61,8 @@
                                             <tr>
                                                 <td>{{ $detail->id }}</td>
                                                 <td>{{ $detail->product->name }}</td>
-                                                <td>{{ $detail->amount }}</td>
                                                 <td class="text-right">{{ $detail->product_price->price }}</td>
+                                                <td class="text-right">{{ $detail->amount }}</td>
                                                 <td class="text-right">{{ number_format($detail->price, 2) }}</td>
                                             </tr>
                                         @endforeach
