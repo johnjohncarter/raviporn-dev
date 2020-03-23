@@ -18,10 +18,10 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Manage User</h3>
+                    <h3 class="card-title">Order Today</h3>
                     <div class="card-tools">
                         <div class="input-group input-group-sm" style="width: 150px;">
-                            <a href="{{ url('new-user') }}" class="brn btn-info" style="padding: 5px; width: 100%; text-align: center; border-radius: 5px">New User</a>
+                            <a href="{{ url('order-new/create') }}" class="brn btn-info" style="padding: 5px; width: 100%; text-align: center; border-radius: 5px">New Order</a>
                         </div>
                     </div>
                 </div>
@@ -31,25 +31,25 @@
                         <table class="table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>ลำดับ</th>
-                                <th>ชื่อผู้ใช้</th>
-                                <th>นามสกุล</th>
-                                <th>email</th>
-                                <th>เบอร์โทรศัพร์</th>
+                                <th>ID</th>
+                                <th>Order</th>
+                                <th>วันที่ส่งสินค้า</th>
+                                <th>จำนวน</th>
+                                <th>รวมเป็นเงิน(บาท)</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @if (isset($users) && count($users))
-                                @foreach($users as $user)
+                            @if (isset($orders) && count($orders))
+                                @foreach($orders as $order)
                                     <tr>
-                                        <td>{{ $user->id }}</td>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->surname }}</td>
-                                        <td>{{ $user->email }}</td>
-                                        <td>{{ $user->phone }}</td>
+                                        <td>{{ $order->id }}</td>
+                                        <td>{{ $order->customer->name }} {{ $order->customer->surname }}</td>
+                                        <td>{{ $order->order_date }}</td>
+                                        <td>{{ $order->total_amount }}</td>
+                                        <td>{{ number_format($order->total_price, 2) }}</td>
                                         <td>
-                                            <a href="{{ url('user-view/'.$user['id']) }}" class="btn btn-info btn-xs">view</a>
+                                            <a href="{{ url('order-view/'.$order['id']) }}" class="btn btn-info btn-xs">view</a>
                                             <button class="btn btn-primary btn-xs">edit</button>
                                             <button class="btn btn-danger btn-xs">delete</button>
                                         </td>
@@ -64,7 +64,7 @@
                         </table>
                     </div>
                     <div class="text-muted">
-                        {{ $users->links() }}
+                        {{ $orders->links() }}
                     </div>
                 </div>
 

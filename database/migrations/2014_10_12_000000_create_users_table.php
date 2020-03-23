@@ -20,9 +20,9 @@ class CreateUsersTable extends Migration
             $table->string('surname');
             $table->string('password');
             $table->string('email')->unique();;
-            $table->string('phone');
-            $table->string('line');
-            $table->string('facebook');
+            $table->string('phone')->nullable();
+            $table->string('line')->nullable();
+            $table->string('facebook')->nullable();
             $table->string('role_id');
             $table->string('role');
             $table->string('image_url')->nullable();

@@ -105,10 +105,6 @@
             <!-- /.card-body -->
         </form>
 
-        <pre>
-            {{ products }}
-        </pre>
-
     </div>
 </template>
 

@@ -38,6 +38,8 @@
 
 @yield('content')
 
+@yield('js')
+
 
 <!-- jQuery -->
 <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
