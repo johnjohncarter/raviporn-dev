@@ -10,6 +10,15 @@ use Illuminate\Http\Request;
 
 class ProductController extends BaseController
 {
+    public function index() {
+        try {
+            $product = Product::query()->get();
+        } catch (\Exception $exception) {
+            return response()->json($this->error($exception->getMessage()));
+        }
+        return response()->json($this->success($product));
+    }
+
     public function getProduct(Request $request) {
         $user_id = $request->input('user_id', null);
         if (!$user_id) {

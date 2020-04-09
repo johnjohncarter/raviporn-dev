@@ -83,6 +83,10 @@
             </div>
         </div>
     </div>
+
+@endsection
+
+@section('js')
     <script>
         function onConfirmDelete(user_id) {
             let result = confirm('กรุณายืนยันการลบ');

@@ -194,7 +194,7 @@
                 axios.post(this.host_with_api + 'order', data).then(
                     response => {
                         if (response.data.success) {
-                            this.$swal("Good job!", "You clicked the button!", "success")
+                            this.$swal("Success !!", "create new order successfully", "success")
                                 .then((value) => {
                                     if (value) {
                                         location.href = 'order-new';
