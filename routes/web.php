@@ -35,7 +35,7 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('order-new/{order_id}/delete', 'Order\OrderNewController@destroy');
 
     Route::get('order-history', 'Order\OrderHistoryController@index');
-    Route::get('order-history/{order_id}/view', 'Order\OrderHistoryController@getNewOrder');
+    Route::get('order-history/{order_id}/view', 'Order\OrderController@show');
     Route::get('order-history/{order_id}/delete', 'Order\OrderHistoryController@getNewOrder');
 
     Route::get('stock', 'Stock\StockController@index');

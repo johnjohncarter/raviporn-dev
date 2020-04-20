@@ -13,7 +13,7 @@ class OrderNewController extends Controller
     public function index() {
         try {
             $orders = Order::with('customer')
-                ->where('order_date', '>=', Carbon::today())
+                ->where('order_date', '=', Carbon::today())
                 ->orderBy('id', 'desc')
                 ->paginate(10);
         } catch (\Exception $exception) {
@@ -42,7 +42,7 @@ class OrderNewController extends Controller
         } catch (\Exception $exception) {
             return redirect('order.order_new.order')->withErrors($exception->getMessage());
         }
-        return view('order.order_new.order_create', ['order' => $order]);
+        return view('order.order_new.order_show', ['order' => $order]);
     }
 
     public function edit($order_id) {}

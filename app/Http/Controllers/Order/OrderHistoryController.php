@@ -12,7 +12,7 @@ class OrderHistoryController extends Controller
     public function index() {
         try {
             $orders = Order::with('customer')
-                ->where('order_date', '>=', Carbon::today())
+                ->where('order_date', '>', Carbon::today())
                 ->orderBy('id', 'desc')
                 ->paginate(10);
         } catch (\Exception $exception) {

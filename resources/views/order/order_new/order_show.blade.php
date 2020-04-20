@@ -63,7 +63,7 @@
                                                 <td>{{ $detail->product->name }}</td>
                                                 <td class="text-right">{{ $detail->product_price->price }}</td>
                                                 <td class="text-right">{{ $detail->amount }}</td>
-                                                <td class="text-right">{{ number_format($detail->price, 2) }}</td>
+                                                <td class="text-right">{{ number_format($detail->price * $detail->amount, 2) }}</td>
                                             </tr>
                                         @endforeach
                                         <tr>

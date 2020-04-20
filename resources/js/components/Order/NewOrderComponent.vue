@@ -197,7 +197,7 @@
                             this.$swal("Success !!", "create new order successfully", "success")
                                 .then((value) => {
                                     if (value) {
-                                        location.href = 'order-new';
+                                        location.href = '/order-new';
                                     }
                                 });
                         }

@@ -1,7 +1,7 @@
 <template>
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">New User Create</h3>
+            <h3 class="card-title">Edit User</h3>
         </div>
         <div class="card-body">
             <form method="post">
@@ -60,74 +60,6 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label for="password">password<span class="text-red">*</span></label>
-                            <input type="text"
-                                   class="form-control"
-                                   id="password"
-                                   name="password"
-                                   v-model="user.password"
-                                   :class="errors.password ? 'is-invalid': ''"
-                                   placeholder="Enter password">
-                            <span v-if="errors.password"
-                                  v-for="error in errors.password"
-                                  class="text-red" style="font-size: 80%">
-                                {{ error }}
-                            </span>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="confirm_password">confirm_password<span class="text-red">*</span></label>
-                            <input type="text"
-                                   class="form-control"
-                                   id="confirm_password"
-                                   name="confirm_password"
-                                   v-model="user.confirm_password"
-                                   :class="errors.confirm_password ? 'is-invalid': ''"
-                                   placeholder="Enter confirm password">
-                            <span v-if="errors.confirm_password"
-                                  v-for="error in errors.confirm_password"
-                                  class="text-red"
-                                  style="font-size: 80%">
-                                {{ error }}
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="email">email</label>
-                            <input type="email"
-                                   class="form-control"
-                                   id="email"
-                                   name="email"
-                                   v-model="user.email"
-                                   :class="errors.email ? 'is-invalid': ''"
-                                   placeholder="Enter email">
-                            <span v-if="errors.email"
-                                  v-for="error in errors.email"
-                                  class="text-red"
-                                  style="font-size: 80%">
-                                {{ error }}
-                            </span>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="phone">phone</label>
-                            <input type="text"
-                                   class="form-control"
-                                   id="phone"
-                                   name="phone"
-                                   v-model="user.phone"
-                                   placeholder="Enter phone">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
                             <label for="facebook">facebook</label>
                             <input type="text"
                                    class="form-control"
@@ -138,8 +70,6 @@
 
                         </div>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="line">line</label>
@@ -209,7 +139,7 @@
                 <div class="row" style="padding-bottom: 50px">
                     <div class="col-sm-12 text-right">
                         <button type="button"
-                                v-on:click="onSubmitNewUser()"
+                                v-on:click="onSubmitUpdateUser()"
                                 class="btn btn-success">submit</button>
                     </div>
                 </div>
@@ -236,9 +166,27 @@
         },
         created() {
             this.getRoles();
-            this.user.role_id = '';
+            this.user.role = '';
+            let base_url = window.location.href.split('/');
+            this.user_id = base_url[4];
+            this.getCurrentUser();
         },
         methods: {
+            getCurrentUser: function() {
+                axios.get(this.host_with_api + 'users/' + this.user_id).then(
+                    response => {
+                        if (response.data.success) {
+                            this.user = response.data.data;
+                            if (this.user.role_id == 3) {
+                                this.getProduct();
+                            }
+                        }
+                    },
+                    error => {
+                        console.log(error)
+                    }
+                );
+            },
             getRoles: function () {
                 axios.get(this.host_with_api + 'roles').then(
                     response => {
@@ -252,10 +200,15 @@
                 );
             },
             getProduct: function () {
-                axios.get(this.host_with_api + 'products').then(
+                axios.get(this.host_with_api + 'product?user_id=' + this.user_id).then(
                     response => {
                         if (response.data.success) {
                             this.products = response.data.data;
+                            for(let index = 0; index < this.products.length; index++) {
+                                if (this.products[index]['price']) {
+                                    this.products[index].price_input = this.products[index]['price']['price']
+                                }
+                            }
                         }
                     },
                     error => {
@@ -263,8 +216,8 @@
                     }
                 );
             },
-            onSubmitNewUser: function () {
-                axios.post(this.host_with_api + 'users', this.user).then(
+            onSubmitUpdateUser: function () {
+                axios.put(this.host_with_api + 'users/' + this.user_id, this.user).then(
                     response => {
                         if (response.data.success) {
                             if (this.user.role_id == 3) {
@@ -293,7 +246,7 @@
                 }
             },
             onSubmitProductPrice: function (user_id) {
-                axios.post(this.host_with_api + 'product-price/' + user_id, { products: this.products }).then(
+                axios.put(this.host_with_api + 'product-price/' + user_id, { products: this.products }).then(
                     response => {
                         if (response.data.success) {
                             this.$swal("Success !!", "create new user successfully", "success")

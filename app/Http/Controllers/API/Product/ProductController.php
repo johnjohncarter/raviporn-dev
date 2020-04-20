@@ -19,6 +19,15 @@ class ProductController extends BaseController
         return response()->json($this->success($product));
     }
 
+    public function getProductEdit($user_id) {
+        try {
+            $product = Product::query()->get();
+        } catch (\Exception $exception) {
+            return response()->json($this->error($exception->getMessage()));
+        }
+        return response()->json($this->success($product));
+    }
+
     public function getProduct(Request $request) {
         $user_id = $request->input('user_id', null);
         if (!$user_id) {

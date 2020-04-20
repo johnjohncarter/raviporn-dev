@@ -66,6 +66,6 @@ class OrderController extends Controller
         } catch (\Exception $exception) {
             return redirect('order-new')->withErrors($exception->getMessage());
         }
-        return view('order.order_view', ['order' => $order]);
+        return view('order.order_new.order_show', ['order' => $order]);
     }
 }

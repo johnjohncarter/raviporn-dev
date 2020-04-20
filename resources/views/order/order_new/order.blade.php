@@ -49,7 +49,7 @@
                                         <td>{{ $order->total_amount }}</td>
                                         <td>{{ number_format($order->total_price, 2) }}</td>
                                         <td>
-                                            <a href="{{ url('order-view/'.$order['id']) }}" class="btn btn-info btn-xs">view</a>
+                                            <a href="{{ url('order-new/'.$order['id'] .'/view') }}" class="btn btn-info btn-xs">view</a>
                                             <button class="btn btn-primary btn-xs">edit</button>
                                             <button class="btn btn-danger btn-xs">delete</button>
                                         </td>

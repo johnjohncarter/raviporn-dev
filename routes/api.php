@@ -22,7 +22,10 @@ Route::get('customer', 'API\User\UserController@getCustomer');
 Route::get('product', 'API\Product\ProductController@getProduct');
 Route::get('products', 'API\Product\ProductController@index');
 Route::post('product-price/{user_id}', 'API\Product\ProductPriceController@newProductPrice');
+Route::put('product-price/{user_id}', 'API\Product\ProductPriceController@updateProductPrice');
 Route::post('order', 'API\Order\OrderController@create');
 
 Route::get('roles', 'API\User\UserController@getRoles');
 Route::post('users', 'API\User\UserController@create');
+Route::put('users/{user_id}', 'API\User\UserController@update');
+Route::get('users/{user_id}', 'API\User\UserController@show');

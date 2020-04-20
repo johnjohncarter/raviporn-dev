@@ -35,4 +35,38 @@ class ProductPriceController extends BaseController
             return response()->json($this->success('create product price successfully, and have something error !!'));
         return response()->json($this->success('create product price successfully !!'));
     }
+
+    public function updateProductPrice(Request $request, $user_id) {
+        $validator = Validator::make($request->all(), ['products' => 'required']);
+        if ($validator->fails())
+            return response()->json($this->error($validator->errors()));
+
+        $products = $request->input('products', []);
+        $response = true;
+        try {
+            $price = ProductPrice::query()->where('user_id', $user_id)->get();
+            foreach ($products as $product) {
+                if (isset($product['price_input'])) {
+                    $data['product_id'] = $product['id'];
+                    $data['user_id'] = $user_id;
+                    $data['price'] = $product['price_input'];
+                    $price = ProductPrice::query()
+                        ->where('user_id', $user_id)
+                        ->where('product_id', $product['id'])
+                        ->first();
+                    if ($price)
+                        $product = $price->update($data);
+                    else
+                        $product = ProductPrice::query()->create($data);
+                    if (!$product)
+                        $response = false;
+                }
+            }
+        } catch (\Exception $exception) {
+            return response()->json($this->error($exception->getMessage()));
+        }
+        if (!$response)
+            return response()->json($this->success('create product price successfully, and have something error !!'));
+        return response()->json($this->success('create product price successfully !!'));
+    }
 }
