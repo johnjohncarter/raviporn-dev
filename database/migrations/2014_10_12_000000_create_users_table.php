@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('line')->nullable();
             $table->string('facebook')->nullable();
             $table->string('role_id');
-            $table->string('role');
+            $table->string('role')->nullable();
             $table->string('image_url')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
