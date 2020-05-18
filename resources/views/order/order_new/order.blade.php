@@ -36,6 +36,7 @@
                                 <th>วันที่ส่งสินค้า</th>
                                 <th>จำนวน</th>
                                 <th>รวมเป็นเงิน(บาท)</th>
+                                <th>สถานะการจ่ายเงิน</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -49,6 +50,13 @@
                                         <td>{{ $order->total_amount }}</td>
                                         <td>{{ number_format($order->total_price, 2) }}</td>
                                         <td>
+                                            @if ($order->is_pay)
+                                                <label style="background-color: #00d900; color: white; padding: 5px;">จ่ายแล้ว</label>
+                                            @else
+                                                <label style="background-color: #d98b00; color: white; padding: 5px;">ยังไม่ได้จ่าย</label>
+                                            @endif
+                                        </td>
+                                        <td>
                                             <a href="{{ url('order-new/'.$order['id'] .'/view') }}" class="btn btn-info btn-xs">view</a>
                                             <button class="btn btn-primary btn-xs">edit</button>
                                             <button class="btn btn-danger btn-xs">delete</button>
@@ -57,7 +65,7 @@
                                 @endforeach
                             @else
                                 <tr>
-                                    <td colspan="6">ไม่พบข้อมูล</td>
+                                    <td colspan="7">ไม่พบข้อมูล</td>
                                 </tr>
                             @endif
                             </tbody>

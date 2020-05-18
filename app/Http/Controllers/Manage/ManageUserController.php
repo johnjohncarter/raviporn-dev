@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Manage;
 
 use App\Http\Controllers\Controller;
+use App\Models\ProductPrice;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -11,9 +12,13 @@ use Illuminate\Support\Facades\Validator;
 class ManageUserController extends Controller
 {
     public function index() {
-        $users = User::query()
-            ->where('role_id', '!=', 1)
-            ->paginate(10);
+        try {
+            $users = User::query()
+                ->where('role_id', '!=', 1)
+                ->paginate(10);
+        } catch (\Exception $exception) {
+            return view('manage.user', ['exception' => $exception->getMessage()]);
+        }
         return view('manage.user', ['users' => $users]);
     }
 
@@ -56,7 +61,18 @@ class ManageUserController extends Controller
     }
 
     public function view($user_id) {
-        return view('manage.user_show');
+        try {
+            $user = User::with('role', 'product_price')->find($user_id)->toArray();
+            $user['product_price'] = ProductPrice::query()
+                ->with('product')
+                ->where('user_id', $user_id)
+                ->get()
+                ->toArray();
+//            dd($user);
+        } catch (\Exception $exception) {
+            return redirect('manage-user')->withErrors($exception->getMessage());
+        }
+        return view('manage.user_show', ['user' => $user]);
     }
 
     public function edit($user_id) {

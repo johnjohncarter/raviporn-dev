@@ -40,7 +40,13 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-3"><label>สถานะ</label></div>
-                        <div class="col-sm-9"><label style="background-color: #00d900; color: white; padding: 5px;">จ่ายแล้ว</label></div>
+                        <div class="col-sm-9">
+                            @if ($order->is_pay)
+                                <label style="background-color: #00d900; color: white; padding: 5px;">จ่ายแล้ว</label>
+                            @else
+                                <label style="background-color: #d98b00; color: white; padding: 5px;">ยังไม่ได้จ่าย</label>
+                            @endif
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-12">

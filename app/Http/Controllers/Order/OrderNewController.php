@@ -26,6 +26,17 @@ class OrderNewController extends Controller
         return view('order.order_new.order_create');
     }
 
+    public function isPay($order_id) {
+        try {
+            $order = Order::query()->find($order_id)->update(['is_pay' => true]);
+        } catch (\Exception $exception) {
+            return redirect('order.order_history.order')->withErrors($exception->getMessage());
+        }
+        if (!$order)
+            return redirect('order.order_history.order')->withErrors('update pay fail !!');
+        return redirect('order.order_history.order')->withSuccess('update pay successfully !!');
+    }
+
     public function view($order_id) {
         try {
             $order = Order::query()->find($order_id);

@@ -60,6 +60,37 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
+                            <label for="email">email</label>
+                            <input type="email"
+                                   class="form-control"
+                                   id="email"
+                                   name="email"
+                                   v-model="user.email"
+                                   :class="errors.email ? 'is-invalid': ''"
+                                   placeholder="Enter email">
+                            <span v-if="errors.email"
+                                  v-for="error in errors.email"
+                                  class="text-red"
+                                  style="font-size: 80%">
+                                {{ error }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="phone">phone</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="phone"
+                                   name="phone"
+                                   v-model="user.phone"
+                                   placeholder="Enter phone">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
                             <label for="facebook">facebook</label>
                             <input type="text"
                                    class="form-control"

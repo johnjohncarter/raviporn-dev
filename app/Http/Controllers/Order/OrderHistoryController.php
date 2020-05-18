@@ -13,6 +13,7 @@ class OrderHistoryController extends Controller
         try {
             $orders = Order::with('customer')
                 ->where('order_date', '>', Carbon::today())
+                ->orWhere('is_pay', true)
                 ->orderBy('id', 'desc')
                 ->paginate(10);
         } catch (\Exception $exception) {

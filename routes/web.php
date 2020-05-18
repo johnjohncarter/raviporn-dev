@@ -29,6 +29,7 @@ Route::group(['middleware' => 'user'], function () {
 
     Route::get('order-new', 'Order\OrderNewController@index');
     Route::get('order-new/create', 'Order\OrderNewController@create');
+    Route::get('order-new/{order_id}/is-pay', 'Order\OrderNewController@isPay');
     Route::get('order-new/{order_id}/view', 'Order\OrderNewController@view');
     Route::get('order-new/{order_id}/edit', 'Order\OrderNewController@edit');
     Route::get('order-new/{order_id}/update', 'Order\OrderNewController@update');

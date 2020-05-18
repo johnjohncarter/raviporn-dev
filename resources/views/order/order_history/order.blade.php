@@ -31,6 +31,7 @@
                                 <th>วันที่ส่งสินค้า</th>
                                 <th>จำนวน</th>
                                 <th>รวมเป็นเงิน(บาท)</th>
+                                <th>สถานะการจ่ายเงิน</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -44,6 +45,23 @@
                                         <td>{{ $order->total_amount }}</td>
                                         <td>{{ number_format($order->total_price, 2) }}</td>
                                         <td>
+                                            @if ($order->is_pay)
+                                                <span style="background-color: #00d900; color: white; padding: 5px;">จ่ายแล้ว</span>
+                                            @else
+                                                <span style="background-color: #d98b00; color: white; padding: 5px;">ค้างจ่าย</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if (!$order->is_pay)
+                                                <a href="#" onclick="onConfirmPay({{ $order->id }})"
+                                                   class="btn btn-success btn-xs">ยืนยันการจ่ายเงิน</a>
+                                                <form id="pay-{{ $order->id }}"
+                                                      action="{{ url('order-history/' . $order->id . '/is-pay') }}"
+                                                      method="post">
+                                                    <input type="hidden" name="_method" value="put">
+                                                    @csrf
+                                                </form>
+                                            @endif
                                             <a href="{{ url('order-history/'.$order['id'].'/view') }}" class="btn btn-info btn-xs">view</a>
                                             <button class="btn btn-danger btn-xs">delete</button>
                                         </td>
@@ -51,7 +69,7 @@
                                 @endforeach
                             @else
                                 <tr>
-                                    <td colspan="6">ไม่พบข้อมูล</td>
+                                    <td colspan="7">ไม่พบข้อมูล</td>
                                 </tr>
                             @endif
                             </tbody>
@@ -65,4 +83,13 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function onConfirmPay(order_id) {
+            let result = confirm('กรุณายืนยันการจ่ายเงิน');
+            if (result) {
+                document.getElementById('pay-' + order_id).submit();
+            }
+        }
+    </script>
 @endsection

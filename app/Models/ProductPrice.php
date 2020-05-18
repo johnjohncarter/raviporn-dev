@@ -35,4 +35,8 @@ class ProductPrice extends Model
      */
     protected $casts = [
     ];
+
+    public function product() {
+        return $this->hasOne(Product::class, 'id', 'product_id');
+    }
 }

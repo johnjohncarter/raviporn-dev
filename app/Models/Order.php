@@ -21,6 +21,7 @@ class Order extends Model
         'total_amount',
         'total_price',
         'description',
+        'is_pay',
     ];
 
     /**

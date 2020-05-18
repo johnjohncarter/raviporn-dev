@@ -21,6 +21,7 @@ class CreateOrdersTable extends Migration
             $table->integer('total_amount');
             $table->decimal('total_price');
             $table->text('description')->nullable();
+            $table->boolean('is_pay')->nullable()->default(false);
             $table->timestamps();
         });
     }
