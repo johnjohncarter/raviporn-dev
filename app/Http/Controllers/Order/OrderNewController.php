@@ -13,7 +13,7 @@ class OrderNewController extends Controller
     public function index() {
         try {
             $orders = Order::with('customer')
-                ->where('order_date', '=', Carbon::today())
+                ->where('order_date', '>=', Carbon::today())
                 ->orderBy('id', 'desc')
                 ->paginate(10);
         } catch (\Exception $exception) {
@@ -30,11 +30,11 @@ class OrderNewController extends Controller
         try {
             $order = Order::query()->find($order_id)->update(['is_pay' => true]);
         } catch (\Exception $exception) {
-            return redirect('order.order_history.order')->withErrors($exception->getMessage());
+            return redirect('order-new')->withErrors($exception->getMessage());
         }
         if (!$order)
-            return redirect('order.order_history.order')->withErrors('update pay fail !!');
-        return redirect('order.order_history.order')->withSuccess('update pay successfully !!');
+            return redirect('order-new')->withErrors('update pay fail !!');
+        return redirect('order-new')->withSuccess('update pay successfully !!');
     }
 
     public function view($order_id) {
@@ -48,15 +48,15 @@ class OrderNewController extends Controller
                 ->where('order_id', $order_id)
                 ->get();
             $order['detail'] = $order_detail;
-            $order['order_date'] = date('Y-m-d');
-            $order['order_time'] = date('H:i');
         } catch (\Exception $exception) {
-            return redirect('order.order_new.order')->withErrors($exception->getMessage());
+            return redirect('order-new')->withErrors($exception->getMessage());
         }
         return view('order.order_new.order_show', ['order' => $order]);
     }
 
-    public function edit($order_id) {}
+    public function edit($order_id) {
+        return view('order.order_new.order_edit');
+    }
 
     public function update(Request $request, $order_id) {}
 

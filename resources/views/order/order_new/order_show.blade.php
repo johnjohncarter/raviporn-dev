@@ -28,14 +28,14 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-3"><label>วันทีส่งสินค้า</label></div>
-                        <div class="col-sm-9">{{ $order->order_date }}</div>
+                        <div class="col-sm-9">{{ date('d-m-Y', strtotime($order->order_date)) }}</div>
                     </div>
                     <div class="row">
                         <div class="col-sm-3"><label>เวลาทีส่งสินค้า</label></div>
-                        <div class="col-sm-9">{{ $order->order_time }} น.</div>
+                        <div class="col-sm-9">{{ date('H:i', strtotime($order->order_time)) }} น.</div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-3"><label>เวลาทีส่งสินค้า</label></div>
+                        <div class="col-sm-3"><label>รายละเอียดเพิ่มเติม</label></div>
                         <div class="col-sm-9">{{ $order->description }}</div>
                     </div>
                     <div class="row">
@@ -67,9 +67,9 @@
                                             <tr>
                                                 <td>{{ $detail->id }}</td>
                                                 <td>{{ $detail->product->name }}</td>
-                                                <td class="text-right">{{ $detail->product_price->price }}</td>
+                                                <td class="text-right">{{ $detail->product_price }}</td>
                                                 <td class="text-right">{{ $detail->amount }}</td>
-                                                <td class="text-right">{{ number_format($detail->price * $detail->amount, 2) }}</td>
+                                                <td class="text-right">{{ number_format($detail->price, 2) }}</td>
                                             </tr>
                                         @endforeach
                                         <tr>

@@ -118,11 +118,15 @@
                 customers: [],
                 current_customer: {},
                 user_id: '',
+                order_id: '',
                 orders: {},
             }
         },
         created() {
+            let base_url = window.location.href.split('/');
+            this.order_id = base_url[4];
             this.getCustomer();
+            this.getOrder();
         },
         methods: {
             setFormProduct: function () {
@@ -134,6 +138,7 @@
                         let current_data = {};
                         current_data['id'] = this.products[index]['id'];
                         current_data['product_price'] = this.products[index]['price']['price'];
+                        current_data['order_detail_id'] = this.products[index]['order_detail_id'];
                         current_data['amount'] = parseFloat(this.products[index]['price_input']);
                         current_data['price'] = (parseFloat(this.products[index]['price_input']) * parseFloat(this.products[index]['price']['price']));
                         (total_amount += current_data['amount']);
@@ -148,6 +153,20 @@
                     response => {
                         if (response.data.success) {
                             this.customers = response.data.data;
+                        }
+                    },
+                    error => {
+                        console.log(error)
+                    }
+                );
+            },
+            getOrder: function () {
+                axios.get(this.host_with_api + 'order/' + this.order_id + '/show').then(
+                    response => {
+                        if (response.data.success) {
+                            this.orders = response.data.data;
+                            this.user_id = response.data.data.user_id;
+                            this.getProduct();
                         }
                     },
                     error => {
@@ -171,10 +190,16 @@
                 if (!this.user_id) {
                     this.products = [];
                 }
-                axios.get(this.host_with_api + 'product?user_id=' + this.user_id).then(
+                axios.get(this.host_with_api + 'product?user_id=' + this.user_id + '&order_id=' + this.order_id).then(
                     response => {
                         if (response.data.success) {
                             this.products = response.data.data;
+                            for (let index = 0; index < this.products.length; index++) {
+                                if (this.products[index].order_detail) {
+                                    this.products[index].price_input = this.products[index].order_detail.amount;
+                                    this.products[index].order_detail_id = this.products[index].order_detail.id;
+                                }
+                            }
                         }
                     },
                     error => {
@@ -192,7 +217,7 @@
                 data['total_amount'] = current_data['total_amount'];
                 data['total_price'] = current_data['total_price'];
                 data['products'] = current_data['products'];
-                axios.post(this.host_with_api + 'order', data).then(
+                axios.put(this.host_with_api + 'order/' + this.order_id + '/update', data).then(
                     response => {
                         if (response.data.success) {
                             this.$swal("Success !!", "create new order successfully", "success")

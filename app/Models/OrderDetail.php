@@ -20,6 +20,7 @@ class OrderDetail extends Model
         'user_id',
         'amount',
         'price',
+        'product_price',
         'description',
     ];
 

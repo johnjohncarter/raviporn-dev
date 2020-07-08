@@ -23,6 +23,8 @@ Route::get('product', 'API\Product\ProductController@getProduct');
 Route::get('products', 'API\Product\ProductController@index');
 Route::post('product-price/{user_id}', 'API\Product\ProductPriceController@newProductPrice');
 Route::put('product-price/{user_id}', 'API\Product\ProductPriceController@updateProductPrice');
+Route::get('order/{order_id}/show', 'API\Order\OrderController@show');
+Route::put('order/{order_id}/update', 'API\Order\OrderController@update');
 Route::post('order', 'API\Order\OrderController@create');
 
 Route::get('roles', 'API\User\UserController@getRoles');

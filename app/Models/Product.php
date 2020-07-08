@@ -39,4 +39,9 @@ class Product extends Model
     {
         return $this->hasOne(ProductPrice::class, 'product_id', 'id');
     }
+
+    public function order_detail()
+    {
+        return $this->hasOne(OrderDetail::class, 'product_id', 'id');
+    }
 }

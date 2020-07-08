@@ -34,6 +34,7 @@
                                 <th>ID</th>
                                 <th>Order</th>
                                 <th>วันที่ส่งสินค้า</th>
+                                <th>เวลา</th>
                                 <th>จำนวน</th>
                                 <th>รวมเป็นเงิน(บาท)</th>
                                 <th>สถานะการจ่ายเงิน</th>
@@ -46,7 +47,8 @@
                                     <tr>
                                         <td>{{ $order->id }}</td>
                                         <td>{{ $order->customer->name }} {{ $order->customer->surname }}</td>
-                                        <td>{{ $order->order_date }}</td>
+                                        <td>{{ date('d-m-Y', strtotime($order->order_date)) }}</td>
+                                        <td>{{ date('H:i', strtotime($order->order_time)) }}</td>
                                         <td>{{ $order->total_amount }}</td>
                                         <td>{{ number_format($order->total_price, 2) }}</td>
                                         <td>
@@ -57,8 +59,18 @@
                                             @endif
                                         </td>
                                         <td>
+                                            @if (!$order->is_pay)
+                                                <a href="#" onclick="onConfirmPay({{ $order->id }})"
+                                                   class="btn btn-success btn-xs">ยืนยันการจ่ายเงิน</a>
+                                                <form id="pay-{{ $order->id }}"
+                                                      action="{{ url('order-new/' . $order->id . '/is-pay') }}"
+                                                      method="post">
+                                                    <input type="hidden" name="_method" value="put">
+                                                    @csrf
+                                                </form>
+                                            @endif
                                             <a href="{{ url('order-new/'.$order['id'] .'/view') }}" class="btn btn-info btn-xs">view</a>
-                                            <button class="btn btn-primary btn-xs">edit</button>
+                                            <a href="{{ url('order-new/'.$order['id'] .'/edit') }}" class="btn btn-info btn-xs">edit</a>
                                             <button class="btn btn-danger btn-xs">delete</button>
                                         </td>
                                     </tr>
@@ -79,4 +91,13 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function onConfirmPay(order_id) {
+            let result = confirm('กรุณายืนยันการจ่ายเงิน');
+            if (result) {
+                document.getElementById('pay-' + order_id).submit();
+            }
+        }
+    </script>
 @endsection

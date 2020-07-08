@@ -14,12 +14,12 @@ class CreateOrdersTable extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->integer('user_id');
-            $table->dateTime('order_date');
-            $table->time('order_time');
-            $table->integer('total_amount');
-            $table->decimal('total_price');
+            $table->bigIncrements('id')->nullable();
+            $table->integer('user_id')->nullable();
+            $table->dateTime('order_date')->nullable();
+            $table->time('order_time')->nullable();
+            $table->integer('total_amount')->nullable();
+            $table->decimal('total_price')->nullable();
             $table->text('description')->nullable();
             $table->boolean('is_pay')->nullable()->default(false);
             $table->timestamps();

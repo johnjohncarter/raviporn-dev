@@ -15,12 +15,12 @@ class CreateStockHistoriesTable extends Migration
     {
         Schema::create('stock_histories', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('product_id');
-            $table->integer('stock_id');
-            $table->integer('user_id');
-            $table->decimal('payment');
-            $table->integer('amount');
-            $table->dateTime('payment_date');
+            $table->integer('product_id')->nullable();
+            $table->integer('stock_id')->nullable();
+            $table->integer('user_id')->nullable();
+            $table->decimal('payment')->nullable();
+            $table->integer('amount')->nullable();
+            $table->dateTime('payment_date')->nullable();
             $table->timestamps();
         });
     }

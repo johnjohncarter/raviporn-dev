@@ -42,6 +42,7 @@
                                         <td>{{ $order->id }}</td>
                                         <td>{{ $order->customer->name }} {{ $order->customer->surname }}</td>
                                         <td>{{ $order->order_date }}</td>
+                                        <td>{{ $order->time }}</td>
                                         <td>{{ $order->total_amount }}</td>
                                         <td>{{ number_format($order->total_price, 2) }}</td>
                                         <td>

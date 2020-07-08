@@ -49,7 +49,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('order-history') }}" class="nav-link{{ request()->is('order-history') ? ' active' : '' }}">
+                            <a href="{{ url('order-history') }}" class="nav-link{{ request()->is('order-history*') ? ' active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>order history</p>
                             </a>

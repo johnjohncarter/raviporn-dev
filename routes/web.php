@@ -29,7 +29,7 @@ Route::group(['middleware' => 'user'], function () {
 
     Route::get('order-new', 'Order\OrderNewController@index');
     Route::get('order-new/create', 'Order\OrderNewController@create');
-    Route::get('order-new/{order_id}/is-pay', 'Order\OrderNewController@isPay');
+    Route::put('order-new/{order_id}/is-pay', 'Order\OrderNewController@isPay');
     Route::get('order-new/{order_id}/view', 'Order\OrderNewController@view');
     Route::get('order-new/{order_id}/edit', 'Order\OrderNewController@edit');
     Route::get('order-new/{order_id}/update', 'Order\OrderNewController@update');
@@ -38,6 +38,7 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('order-history', 'Order\OrderHistoryController@index');
     Route::get('order-history/{order_id}/view', 'Order\OrderController@show');
     Route::get('order-history/{order_id}/delete', 'Order\OrderHistoryController@getNewOrder');
+    Route::put('order-history/{order_id}/is-pay', 'Order\OrderHistoryController@isPay');
 
     Route::get('stock', 'Stock\StockController@index');
     Route::get('stock/create', 'Stock\StockController@create');

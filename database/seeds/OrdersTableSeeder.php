@@ -28,7 +28,8 @@ class OrdersTableSeeder extends Seeder
                 'order_id' => $order['id'],
                 'user_id' => 3,
                 'amount' => 100,
-                'price' => 18,
+                'price' => 1800,
+                'product_price' => 18,
                 'description' => 'ขอหวัใหญ่ๆหน่อยนะครับ',
             ],
             [
@@ -36,7 +37,8 @@ class OrdersTableSeeder extends Seeder
                 'order_id' => $order['id'],
                 'user_id' => 3,
                 'amount' => 100,
-                'price' => 15,
+                'price' => 1500,
+                'product_price' => 15,
                 'description' => 'ขออันสวยๆหน่อย จะเอามาตั้งโชว์ลูกค้า',
             ],
         ];
@@ -57,7 +59,8 @@ class OrdersTableSeeder extends Seeder
                 'order_id' => $order['id'],
                 'user_id' => 4,
                 'amount' => 100,
-                'price' => 18,
+                'price' => 1800,
+                'product_price' => 18,
                 'description' => 'ขอหวัใหญ่ๆหน่อยนะครับ',
             ],
             [
@@ -65,7 +68,8 @@ class OrdersTableSeeder extends Seeder
                 'order_id' => $order['id'],
                 'user_id' => 4,
                 'amount' => 50,
-                'price' => 15,
+                'price' => 750,
+                'product_price' => 15,
                 'description' => 'ขออันสวยๆหน่อย จะเอามาตั้งโชว์ลูกค้า',
             ],
         ];
