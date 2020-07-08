@@ -44,4 +44,14 @@ class Product extends Model
     {
         return $this->hasOne(OrderDetail::class, 'product_id', 'id');
     }
+
+    public function order_details()
+    {
+        return $this->hasMany(OrderDetail::class, 'product_id', 'id');
+    }
+
+    public function order_amount()
+    {
+        return $this->hasMany(OrderDetail::class, 'product_id', 'id');
+    }
 }

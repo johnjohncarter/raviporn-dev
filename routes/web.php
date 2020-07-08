@@ -33,7 +33,7 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('order-new/{order_id}/view', 'Order\OrderNewController@view');
     Route::get('order-new/{order_id}/edit', 'Order\OrderNewController@edit');
     Route::get('order-new/{order_id}/update', 'Order\OrderNewController@update');
-    Route::get('order-new/{order_id}/delete', 'Order\OrderNewController@destroy');
+    Route::delete('order-new/{order_id}/delete', 'Order\OrderNewController@destroy');
 
     Route::get('order-history', 'Order\OrderHistoryController@index');
     Route::get('order-history/{order_id}/view', 'Order\OrderController@show');

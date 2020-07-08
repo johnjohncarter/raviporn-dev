@@ -71,7 +71,13 @@
                                             @endif
                                             <a href="{{ url('order-new/'.$order['id'] .'/view') }}" class="btn btn-info btn-xs">view</a>
                                             <a href="{{ url('order-new/'.$order['id'] .'/edit') }}" class="btn btn-info btn-xs">edit</a>
-                                            <button class="btn btn-danger btn-xs">delete</button>
+                                            <a href="#" onclick="onConfirmDelete({{ $order->id }})" class="btn btn-danger btn-xs">delete</a>
+                                            <form id="del-order-{{ $order->id }}"
+                                                  action="{{ url('order-new/' . $order->id . '/delete') }}"
+                                                  method="post">
+                                                <input type="hidden" name="_method" value="delete">
+                                                @csrf
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -93,6 +99,13 @@
     </div>
 
     <script>
+        function onConfirmDelete(order_id) {
+            let result = confirm('กรุณายืนยันการลบ');
+            if (result) {
+                document.getElementById('del-order-' + order_id).submit();
+            }
+        }
+
         function onConfirmPay(order_id) {
             let result = confirm('กรุณายืนยันการจ่ายเงิน');
             if (result) {

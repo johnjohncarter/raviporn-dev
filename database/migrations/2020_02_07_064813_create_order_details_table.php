@@ -20,6 +20,8 @@ class CreateOrderDetailsTable extends Migration
             $table->integer('user_id')->nullable();
             $table->integer('amount')->nullable();
             $table->decimal('price')->nullable();
+            $table->date('order_date')->nullable();
+            $table->time('order_time')->nullable();
             $table->decimal('product_price')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();

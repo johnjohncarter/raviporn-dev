@@ -60,5 +60,22 @@ class OrderNewController extends Controller
 
     public function update(Request $request, $order_id) {}
 
-    public function destroy($order_id) {}
+    public function destroy($order_id) {
+        try {
+            $order = Order::query()->find($order_id)->delete();
+        } catch (\Exception $exception) {
+            return redirect('order-new')->withErrors($exception->getMessage());
+        }
+        if (!$order)
+            return redirect('order-new')->withErrors('delete order fail !!');
+
+        try {
+            $order = OrderDetail::query()->where('order_id', $order_id)->delete();
+        } catch (\Exception $exception) {
+            return redirect('order-new')->withErrors($exception->getMessage());
+        }
+        if (!$order)
+            return redirect('order-new')->withErrors('delete order success and detail fail !!');
+        return redirect('order-new')->withSuccess('delete order successfully !!');
+    }
 }

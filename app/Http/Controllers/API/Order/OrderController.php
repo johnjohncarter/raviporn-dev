@@ -36,14 +36,16 @@ class OrderController extends BaseController
         try {
             $order = Order::query()->create($data);
             foreach ($products as $product) {
-                $data = [];
-                $data['product_id'] = $product['id'];
-                $data['order_id'] = $order['id'];
-                $data['user_id'] = $user_id;
-                $data['amount'] = $product['amount'];
-                $data['price'] = $product['price'];
-                $data['product_price'] = $product['product_price'];
-                OrderDetail::query()->create($data);
+                $current_data = [];
+                $current_data['product_id'] = $product['id'];
+                $current_data['order_id'] = $order['id'];
+                $current_data['user_id'] = $user_id;
+                $current_data['amount'] = $product['amount'];
+                $current_data['price'] = $product['price'];
+                $current_data['order_date'] = $data['order_date'];
+                $current_data['order_time'] = $data['order_time'];
+                $current_data['product_price'] = $product['product_price'];
+                OrderDetail::query()->create($current_data);
             }
         } catch (\Exception $exception) {
             return response()->json($this->error($exception->getMessage()));
@@ -83,6 +85,8 @@ class OrderController extends BaseController
                 $current_data['user_id'] = $user_id;
                 $current_data['amount'] = $product['amount'];
                 $current_data['price'] = $product['price'];
+                $current_data['order_date'] = $data['order_date'];
+                $current_data['order_time'] = $data['order_time'];
                 $current_data['product_price'] = $product['product_price'];
 
                 if (isset($product['order_detail_id'])) {
