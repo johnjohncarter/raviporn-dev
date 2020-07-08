@@ -23,7 +23,7 @@
     <ul class="navbar-nav ml-auto">
         <!-- Notifications Dropdown Menu -->
         <li class="nav-item dropdown">
-            <a class="nav-link" data-toggle="dropdown" href="#">
+            <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
                 <i class="fas fa-th-large"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
