@@ -10,12 +10,33 @@ use Illuminate\Http\Request;
 
 class OrderNewController extends Controller
 {
-    public function index() {
+    public function index(Request $request) {
+        $product = $request->input('product', null);
+        $customer = $request->input('customer', null);
+
+        $current_query = ['customer'];
+        if ($product) {
+            $current_query = ['customer', 'detail_order' => function($query) use($product) {
+                $query->when($product, function ($query) use ($product) {
+                    $query->where('product_name', $product);
+                });
+            }];
+        }
         try {
-            $orders = Order::with('customer')
+            $orders = Order::with($current_query)
                 ->where('order_date', '>=', Carbon::today())
+                ->when($product, function ($query) use ($product) {
+                    $query->whereHas('detail_order', function ($query) use ($product) {
+                        $query->where('product_name', $product);
+                    });
+                })
+                ->when($customer, function ($query) use ($customer) {
+                    $query->whereHas('customer', function ($query) use ($customer) {
+                        $query->where('name', $customer);
+                    });
+                })
                 ->orderBy('id', 'desc')
-                ->paginate(10);
+                ->paginate(15);
         } catch (\Exception $exception) {
             return redirect('order.order_new.order')->withErrors($exception->getMessage());
         }

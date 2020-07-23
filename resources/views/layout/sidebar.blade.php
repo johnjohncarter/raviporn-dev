@@ -82,9 +82,26 @@
                         </p>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a href="#"
+                       onclick="onConfirmLogout()"
+                       class="nav-link">
+                        <i class="nav-icon far fa-address-card"></i>
+                        <p>
+                            Logout
+                        </p>
+                    </a>
+                    <form id="logout"
+                          action="{{ url('sign-out') }}"
+                          method="post">
+                        @csrf
+                    </form>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
 </aside>
+

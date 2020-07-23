@@ -23,6 +23,7 @@ class OrderDetail extends Model
         'order_date',
         'order_time',
         'product_price',
+        'product_name',
         'description',
     ];
 

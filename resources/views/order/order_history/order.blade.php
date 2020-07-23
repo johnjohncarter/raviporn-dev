@@ -29,6 +29,7 @@
                                 <th>ID</th>
                                 <th>Order</th>
                                 <th>วันที่ส่งสินค้า</th>
+                                <th>เวลา</th>
                                 <th>จำนวน</th>
                                 <th>รวมเป็นเงิน(บาท)</th>
                                 <th>สถานะการจ่ายเงิน</th>
@@ -41,8 +42,8 @@
                                     <tr>
                                         <td>{{ $order->id }}</td>
                                         <td>{{ $order->customer->name }} {{ $order->customer->surname }}</td>
-                                        <td>{{ $order->order_date }}</td>
-                                        <td>{{ $order->time }}</td>
+                                        <td>{{ date('d-m-Y', strtotime($order->order_date)) }}</td>
+                                        <td>{{ date('H:i', strtotime($order->order_time)) }}</td>
                                         <td>{{ $order->total_amount }}</td>
                                         <td>{{ number_format($order->total_price, 2) }}</td>
                                         <td>

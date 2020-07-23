@@ -23,6 +23,7 @@ class CreateOrderDetailsTable extends Migration
             $table->date('order_date')->nullable();
             $table->time('order_time')->nullable();
             $table->decimal('product_price')->nullable();
+            $table->string('product_name')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
         });

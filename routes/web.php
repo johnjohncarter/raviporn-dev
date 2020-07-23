@@ -22,7 +22,7 @@ Route::post('register', 'Authen\AuthenController@register');
 Route::get('sign-in', 'Authen\AuthenController@getSignIn');
 Route::post('sign-in', 'Authen\AuthenController@signIn');
 
-Route::get('sign-out', 'Authen\UserController@signOut');
+Route::post('sign-out', 'Authen\UserController@signOut');
 
 Route::group(['middleware' => 'user'], function () {
     Route::get('dashboard', 'Dashboard\DashboardController@dashboard');

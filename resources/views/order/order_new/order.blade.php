@@ -49,8 +49,20 @@
                                         <td>{{ $order->customer->name }} {{ $order->customer->surname }}</td>
                                         <td>{{ date('d-m-Y', strtotime($order->order_date)) }}</td>
                                         <td>{{ date('H:i', strtotime($order->order_time)) }}</td>
-                                        <td>{{ $order->total_amount }}</td>
-                                        <td>{{ number_format($order->total_price, 2) }}</td>
+                                        <td>
+                                            @if (isset($order->detail_order))
+                                                {{ $order->detail_order->amount }}
+                                            @else
+                                                {{ $order->total_amount }}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if (isset($order->detail_order))
+                                                {{ number_format($order->detail_order->price, 2) }}
+                                            @else
+                                                {{ number_format($order->total_price, 2) }}
+                                            @endif
+                                        </td>
                                         <td>
                                             @if ($order->is_pay)
                                                 <label style="background-color: #00d900; color: white; padding: 5px;">จ่ายแล้ว</label>
@@ -83,7 +95,7 @@
                                 @endforeach
                             @else
                                 <tr>
-                                    <td colspan="7">ไม่พบข้อมูล</td>
+                                    <td colspan="8">ไม่พบข้อมูล</td>
                                 </tr>
                             @endif
                             </tbody>

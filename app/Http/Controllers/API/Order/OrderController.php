@@ -45,6 +45,7 @@ class OrderController extends BaseController
                 $current_data['order_date'] = $data['order_date'];
                 $current_data['order_time'] = $data['order_time'];
                 $current_data['product_price'] = $product['product_price'];
+                $current_data['product_name'] = $product['product_name'];
                 OrderDetail::query()->create($current_data);
             }
         } catch (\Exception $exception) {

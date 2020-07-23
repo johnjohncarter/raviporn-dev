@@ -138,6 +138,7 @@
                         let current_data = {};
                         current_data['id'] = this.products[index]['id'];
                         current_data['product_price'] = this.products[index]['price']['price'];
+                        current_data['product_name'] = this.products[index]['name'];
                         current_data['order_detail_id'] = this.products[index]['order_detail_id'];
                         current_data['amount'] = parseFloat(this.products[index]['price_input']);
                         current_data['price'] = (parseFloat(this.products[index]['price_input']) * parseFloat(this.products[index]['price']['price']));
